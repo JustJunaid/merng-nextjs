@@ -4,7 +4,7 @@ import '../styles/globals.css'
 import Layout from '../layout'
 
 const client = new ApolloClient({
-	uri: 'http://localhost:4000/graphql',
+	uri: '/api/graphql',
 	cache: new InMemoryCache(),
 })
 
