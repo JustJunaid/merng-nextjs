@@ -16,3 +16,7 @@ a {
 * {
 	box-sizing: border-box;
 }
+
+.mt-20 {
+	margin-top: 20px;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useMutation, gql } from '@apollo/client'
 import { Input, Button } from 'antd'
+import { useRouter } from 'next/router'
 
 const { TextArea } = Input
 
@@ -15,14 +16,16 @@ const CREATE_POST = gql`
 `
 
 export default function CreatePost({ posts, setPosts }) {
+	const router = useRouter()
 	const [author, setAuthor] = useState()
 	const [postBody, setPostBody] = useState()
 	const [createPost, { data }] = useMutation(CREATE_POST)
 
 	const handleSubmit = async () => {
 		try {
+			// router.push({ pathname: '/', query: { source: 'createPost' } })
+			if (!author || !postBody) return
 			const result = await createPost({ variables: { author, body: postBody } })
-			setPosts([result.data.createPost, ...posts])
 			setAuthor('')
 			setPostBody('')
 		} catch {

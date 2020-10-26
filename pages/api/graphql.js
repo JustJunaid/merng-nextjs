@@ -1,7 +1,7 @@
-// const { ApolloServer, gql } = require('apollo-server')
 const mongoose = require('mongoose')
 const { ApolloServer, gql } = require('apollo-server-micro')
 const Post = require('./models/Post')
+// const Post = mongoose.model('Post')
 
 const dbString =
 	'mongodb+srv://Junaid:Hf6Ur7BTlQydglE5@cluster0.wawkd.mongodb.net/merng?retryWrites=true&w=majority'
@@ -34,7 +34,7 @@ const typeDefs = gql`
 const resolvers = {
 	Query: {
 		sayHi: () => 'Junaid here',
-		getPosts: () => Post.find(),
+		getPosts: () => Post.find().sort({ createdAt: -1 }),
 	},
 
 	Mutation: {
