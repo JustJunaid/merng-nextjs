@@ -15,7 +15,7 @@ export default function DeletePost({ postId, posts, setPosts }) {
 		<div
 			onClick={async () => {
 				await deletePost({ variables: { id: postId } })
-				const remainingPost = posts.slice(0, posts.length - 1)
+				const remainingPost = posts.filter(({ id }) => id !== postId)
 				setPosts(remainingPost)
 			}}
 		>

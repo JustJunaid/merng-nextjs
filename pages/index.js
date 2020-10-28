@@ -2,8 +2,16 @@ import { useState, useEffect } from 'react'
 import { gql, useQuery, useLazyQuery } from '@apollo/client'
 import { Spin } from 'antd'
 import { useRouter } from 'next/router'
+import styled from 'styled-components'
 
 import Posts from '../components/Posts'
+
+const StyledLoaderContainer = styled.div`
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`
 
 const POSTS = gql`
 	query {
@@ -30,7 +38,12 @@ export default function Home() {
 
 	if (error) return 'Something went wrong!'
 
-	if (loading) return <Spin size="large" />
+	if (loading)
+		return (
+			<StyledLoaderContainer>
+				<Spin size="large" />
+			</StyledLoaderContainer>
+		)
 
 	return (
 		<div style={{ paddingBottom: '4rem' }}>
